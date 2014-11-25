@@ -22,6 +22,12 @@ class mysql {
         require => Service['mysql'],
     }
 
+    exec { 'set-mysql-remote-access':
+        command => "mysql -u root -proot -e \"GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION; FLUSH PRIVILEGES;\"",
+        path    => ['/bin', '/usr/bin'],
+        require => Exec['set-mysql-password'],
+    }
+
     mysql::db::create { 'exampledatabase': }
 }
 

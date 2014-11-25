@@ -1,9 +1,9 @@
 exec { 'apt-get update':
-  path => '/usr/bin',
+    path => '/usr/bin',
 }
 
-package { 'vim':
-  ensure => present,
+package { ['vim', 'git', 'curl']:
+    ensure => present,
 }
 
-include nginx, php, mysql
+include nginx, php, mysql, magerun

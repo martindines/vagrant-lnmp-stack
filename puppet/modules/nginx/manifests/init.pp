@@ -3,11 +3,11 @@ class nginx {
         ensure => 'directory',
     }
 
-    file { '/var/www/vagrant-example':
+    file { '/var/www/openid':
         ensure => 'directory',
     }
 
-    file { '/var/www/vagrant-example/site':
+    file { '/var/www/openid/site':
         ensure  => 'link',
         target  => '/vagrant/site',
     }
@@ -23,10 +23,10 @@ class nginx {
     }
 
     file { 'vagrant-nginx':
-        path => '/etc/nginx/sites-available/vagrant-example.dev',
+        path => '/etc/nginx/sites-available/openid.dev',
         ensure => file,
         require => Package['nginx'],
-        source => 'puppet:///modules/nginx/vagrant-example.dev',
+        source => 'puppet:///modules/nginx/openid.dev',
     }
 
     file { 'default-nginx-disable':
@@ -36,8 +36,8 @@ class nginx {
     }
 
     file { 'vagrant-nginx-enable':
-        path => '/etc/nginx/sites-enabled/vagrant-example.dev',
-        target => '/etc/nginx/sites-available/vagrant-example.dev',
+        path => '/etc/nginx/sites-enabled/openid.dev',
+        target => '/etc/nginx/sites-available/openid.dev',
         ensure => link,
         notify => Service['nginx'],
         require => [

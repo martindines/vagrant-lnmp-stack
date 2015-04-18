@@ -28,6 +28,6 @@ class mysql {
         require => Exec['set-mysql-password'],
     }
 
-    mysql::db::create { 'exampledatabase': }
+    mysql::db::create { 'openid': }
 }
 

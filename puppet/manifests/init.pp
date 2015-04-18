@@ -6,4 +6,8 @@ package { 'vim':
   ensure => present,
 }
 
+package { 'git':
+  ensure => present,
+}
+
 include nginx, php, mysql
